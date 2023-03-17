@@ -17,6 +17,7 @@ public class Tarjeta {
 		return sumarPropina(descuentoPlatos + pedido.costoBebidas());
 	}
 
+	// preguntar responsabilidad
 	public int sumarPropina(int unCosto) {
 		if (unCosto < 1000) {
 			return (int) (unCosto + (unCosto * 5 / 100));
