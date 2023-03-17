@@ -1,6 +1,4 @@
-package modelo;
-
-import java.util.ArrayList;
+package tp12Modelo;
 
 public class Tarjeta {
 	protected String dueñoTarjeta;
@@ -13,18 +11,10 @@ public class Tarjeta {
 		this.descuento = 0;
 	}
 
-	public int calcularCosto(ArrayList<BebidaRecord> listaBebidas, ArrayList<PlatoRecord> listaPlatos) {
-		int costoBebidas = 0;
-		int costoPlatos = 0;
-
-		for (PlatoRecord platoRecord : listaPlatos) {
-			costoPlatos = costoPlatos + platoRecord.precio();
-		}
-		for (BebidaRecord bebidaRecord : listaBebidas) {
-			costoBebidas = costoBebidas + bebidaRecord.precio();
-		}
-
-		return sumarPropina(costoBebidas + costoPlatos);
+	public int calcularCosto(Pedido pedido) {
+		int costoPlatos = pedido.costoPlatos();
+		int descuentoPlatos = (int) (costoPlatos - (costoPlatos) * this.descuento / 100);
+		return sumarPropina(descuentoPlatos + pedido.costoBebidas());
 	}
 
 	public int sumarPropina(int unCosto) {
